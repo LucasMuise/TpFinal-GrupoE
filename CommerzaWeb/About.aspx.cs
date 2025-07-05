@@ -14,7 +14,7 @@ namespace CommerzaWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //txtId.Enabled = false;
+            txtId.Enabled = false;
             try
 
             {
@@ -41,14 +41,7 @@ namespace CommerzaWeb
                     {
                         btnEliminar.Enabled = false; 
                     }
-                    if (Request.QueryString["Id"] != null)
-                    {
-                        txtId.Enabled = false;
-                    }
-                    else
-                    {
-                        txtId.Enabled = true;
-                    }
+                
                 }
                 string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
                 if (id != "" && !IsPostBack)
@@ -88,18 +81,18 @@ namespace CommerzaWeb
                 nuevo.Categoria.Id = int.Parse(ddlCat.SelectedValue);
                 nuevo.Marca = new Marca();
                 nuevo.Marca.Id = int.Parse(ddlMarca.SelectedValue);
-                //nuevo.ImagenUrl = TxtImage.Text;
+               
                 nuevo.Precio = decimal.Parse(txtPrecio.Text);
                 nuevo.Stock = int.Parse(txtStock.Text);
                 if (Request.QueryString["Id"] != null)
                 {
                     nuevo.Id = int.Parse(txtId.Text);
-                    negocio.moificarConSp(nuevo);
+                    negocio.modificarConSp(nuevo);
                    
                 }
                 else
                 {   
-                    nuevo.Id = int.Parse(txtId.Text);
+                   
                     negocio.agregarConSp(nuevo);
                    
                 }

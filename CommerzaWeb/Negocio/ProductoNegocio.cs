@@ -99,7 +99,7 @@ namespace CommerzaWeb.Negocio
 
                 datos.setearProcedimiento("storedAltaProducto");
 
-                datos.setearParametro("@Id", nuevo.Id);
+             
                 datos.setearParametro("@Nombre", nuevo.Nombre);
                 datos.setearParametro("@Descripcion", nuevo.Descripcion);
                 datos.setearParametro("@Precio", nuevo.Precio);
@@ -122,18 +122,11 @@ namespace CommerzaWeb.Negocio
 
 
         }
-        public void moificarConSp(Producto produc)
+        public void modificarConSp(Producto produc)
         {
             AccesoDatos datos = new AccesoDatos();
             try
-            {                //@Nombre varchar(500),
-                //@Descripcion varchar(500),
-                //@Precio decimal,
-                //@Stock int,
-                //@CategoriaId int,
-                //@Marcaid int,
-                //@ImagenUrl varchar(500),
-                //@Id int
+            { 
                 datos.setearProcedimiento("storedModificar");
                 datos.setearParametro("@Id", produc.Id);
                 datos.setearParametro("@Nombre", produc.Nombre);

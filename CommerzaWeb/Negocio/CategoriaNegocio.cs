@@ -19,11 +19,12 @@ namespace CommerzaWeb.Negocio
                 datos.setearConsuta("Select Id, Nombre From Categorias");
                 datos.ejecutarLectura();
 
-                while (datos.Lector.Read()) { 
-                
+                while (datos.Lector.Read())
+                {
+
                     Categoria aux = new Categoria();
                     aux.Id = (int)datos.Lector["Id"];
-                    aux.Desc=(string)datos.Lector["Nombre"];
+                    aux.Desc = (string)datos.Lector["Nombre"];
 
                     lista.Add(aux);
                 }
@@ -37,7 +38,31 @@ namespace CommerzaWeb.Negocio
 
 
         }
+        public void agregarCat(Categoria nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+
+                datos.setearProcedimiento("storedAltaCategoria");
+                datos.setearParametro("@Nombre", nuevo.Desc);
+
+                datos.ejecutarLectura();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
 
 
+
+
+        }
+      
     }
 }
