@@ -17,7 +17,7 @@ namespace CommerzaWeb.Datos
         }
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CommerzaDB; integrated security=true");
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=EcommerceWebDB; integrated security=true");
             comando = new SqlCommand();
         }
         public void setearProcedimiento(string sp)
