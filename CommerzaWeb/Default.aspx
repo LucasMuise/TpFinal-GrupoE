@@ -47,27 +47,48 @@
             </columns>
 
         </div>--%>
-        <h1>
-            LISTADO PRODUCTOS
+        <h1>LISTADO PRODUCTOS
         </h1>
 
         <hr />
 
-        <asp:GridView ID="gvProductos" OnSelectedIndexChanged="gvProductos_SelectedIndexChanged" DataKeyNames="id" CssClass="table" AutoGenerateColumns="false" runat="server">
+        <asp:GridView ID="gvProductos" runat="server" CssClass="table"
+            AutoGenerateColumns="False"
+            DataKeyNames="Id"
+            OnSelectedIndexChanged="gvProductos_SelectedIndexChanged"
+            OnRowCommand="gvProductos_RowCommand">
+    
             <Columns>
                 <asp:BoundField HeaderText="Id" DataField="Id" />
                 <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
-                <asp:BoundField HeaderText="Precio" DataField="Precio" />
+                <asp:BoundField HeaderText="Descripción" DataField="Descripcion" />
+                <asp:BoundField HeaderText="Precio" DataField="Precio" DataFormatString="{0:C}" />
                 <asp:BoundField HeaderText="Stock" DataField="Stock" />
-                <asp:BoundField HeaderText="Categoria" DataField="Categoria" />
+                <asp:BoundField HeaderText="Categoría" DataField="Categoria" />
                 <asp:BoundField HeaderText="Marca" DataField="Marca" />
-                <asp:CommandField HeaderText="Acción" ShowSelectButton="true" SelectText="✍" />
+
+       
+                <asp:TemplateField HeaderText="Carrito">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnkAdd" runat="server"
+                            CssClass="btn btn-sm btn-success"
+                            Text="+" CommandName="AddCart"
+                            CommandArgument='<%# Eval("Id") %>' />
+                    </ItemTemplate>
+                </asp:TemplateField>
+
+            
+                <asp:TemplateField HeaderText="Acción">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnkEdit" runat="server"
+                            CssClass="btn btn-link p-0"
+                            CommandName="Select" Text="✍"
+                            Visible='<%# IsAdmin %>' />
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
-
-
         </asp:GridView>
-         <a href="About.aspx" class="btn btn-primary">Agregar</a>
+        <a href="About.aspx" class="btn btn-primary">Agregar</a>
     </main>
 
 </asp:Content>

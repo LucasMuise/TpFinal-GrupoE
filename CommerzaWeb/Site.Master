@@ -12,7 +12,7 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 </head>
@@ -46,10 +46,26 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/About">Formulario</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contact</a></li>
-                        
+
+                        <!-- Links siempre visibles -->
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Carrito.aspx">Carrito</a></li>
+
+                        <!-- Link Administración: solo para el admin -->
+                        <li class="nav-item" runat="server" id="liAdmin" visible="false">
+                            <a class="nav-link" runat="server" href="~/Admin/Productos.aspx">Administrar</a>
+                        </li>
+
+                        <!-- Ingresar (anónimos) -->
+                        <li class="nav-item" runat="server" id="liLogin">
+                            <a class="nav-link" runat="server" href="~/Login.aspx">Ingresar</a>
+                        </li>
+
+                        <!-- Salir (logeados) -->
+                        <li class="nav-item" runat="server" id="liLogout" visible="false">
+                            <asp:LinkButton ID="btnLogout" CssClass="nav-link" runat="server"
+                                OnClick="btnLogout_Click">Salir</asp:LinkButton>
+                        </li>
                     </ul>
                 </div>
             </div>
