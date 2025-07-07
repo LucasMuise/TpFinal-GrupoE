@@ -20,10 +20,10 @@
                     <asp:TextBox runat="server" ID="txtDesc" CssClass="form-control" />
                 </div>
 
-                <div class="mb-3">
+             <%--   <div class="mb-3">
                     <label for="txtImagen" class="form-label">ImagenUrl: </label>
                     <asp:TextBox runat="server" ID="TxtImage" CssClass="form-control" />
-                </div>
+                </div>--%>
 
                 <div class="mb-3">
                     <asp:Label ID="lblPrecio" runat="server" Text="Precio:"></asp:Label>

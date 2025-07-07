@@ -38,6 +38,32 @@ namespace CommerzaWeb.Negocio
 
 
         }
+        public void agregarMarca(Marca nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+
+                datos.setearProcedimiento("storedAltaMarca");
+                datos.setearParametro("@Nombre", nuevo.Desc);
+
+                datos.ejecutarLectura();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+
+
+
+        }
+
 
     }
 }
