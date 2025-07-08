@@ -50,47 +50,49 @@ namespace CommerzaWeb.Negocio
         public Producto traerPorId(int id)
         {
             AccesoDatos datos = new AccesoDatos();
+            Producto producto = null;
+
             try
             {
-                datos.setearConsuta("Select P.Id,P.Nombre,P.Descripcion,P.Precio,P.Stock,P.CategoriaId,  C.Nombre as Categoria,P.MarcaId, M.Nombre as Marca from Productos P INNER JOIN Marcas M ON P.MarcaId = M.Id    INNER JOIN Categorias C ON P.CategoriaId = C.Id Where P.Id = @Id");
-                datos.setearParametro("@id", id);
+                datos.setearConsuta(
+                    "SELECT P.Id, P.Nombre, P.Descripcion, P.Precio, P.Stock, " +
+                    "C.Nombre AS Categoria, M.Nombre AS Marca " +
+                    "FROM Productos P " +
+                    "JOIN Categorias C ON P.CategoriaId = C.Id " +
+                    "JOIN Marcas M    ON P.MarcaId     = M.Id " +
+                    "WHERE P.Id = @Id");
+                datos.setearParametro("@Id", id);
                 datos.ejecutarLectura();
 
                 if (datos.Lector.Read())
                 {
-                    Producto producto = new Producto()
+                    producto = new Producto
                     {
-
-                        Nombre = (string)datos.Lector["Nombre"],
-                        Descripcion = (string)datos.Lector["Descripcion"],
-                        Precio = (Decimal)datos.Lector["Precio"],
+                        Id = (int)datos.Lector["Id"],
+                        Nombre = datos.Lector["Nombre"].ToString(),
+                        Descripcion = datos.Lector["Descripcion"].ToString(),
+                        Precio = (decimal)datos.Lector["Precio"],
                         Stock = (int)datos.Lector["Stock"],
-                        Categoria = new Categoria()
+                        Categoria = new Categoria
                         {
-                            Id = (int)datos.Lector["CategoriaId"],
-                            Desc = (string)datos.Lector["Categoria"]
+                            Desc = datos.Lector["Categoria"].ToString()
                         },
-                        Marca = new Marca()
+                        Marca = new Marca
                         {
-                            Id = (int)datos.Lector["MarcaId"],
-                            Desc = (string)datos.Lector["Marca"]
+                            Desc = datos.Lector["Marca"].ToString()
                         }
                     };
-
-                    return producto;
                 }
 
-                return null;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                return producto;
             }
             finally
             {
                 datos.cerrarConexion();
             }
         }
+
+
         public void agregarConSp(Producto nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -135,25 +137,17 @@ namespace CommerzaWeb.Negocio
                 datos.setearParametro("@Stock", produc.Stock);
                 datos.setearParametro("@CategoriaId", produc.Categoria.Id);
                 datos.setearParametro("@MarcaId", produc.Marca.Id);
-             
-               
-
 
                 datos.ejecutarLectura();
 
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
             {
-
-
                 datos.cerrarConexion();
-
-
             }
 
 

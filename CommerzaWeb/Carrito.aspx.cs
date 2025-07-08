@@ -35,8 +35,19 @@ namespace CommerzaWeb
 
             lblTotal.Text = carritoNeg.Total().ToString("C");
 
-            // Habilita el botón sólo si hay algo en la lista si no, no
+            // Habilita el botón solo si hay algo en la lista 
             btnComprar.Enabled = lista.Count > 0;
+        }
+
+        protected void gvCarrito_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            //Viene de la columna 🗑 
+            if (e.CommandName == "DelCart")
+            {
+                int idProd = Convert.ToInt32(e.CommandArgument);
+                carritoNeg.Eliminar(idProd);  
+                CargarCarrito();               
+            }
         }
 
         protected void btnComprar_Click(object sender, EventArgs e)

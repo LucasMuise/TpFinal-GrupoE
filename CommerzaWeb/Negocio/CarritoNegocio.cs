@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,16 +21,34 @@ namespace CommerzaWeb.Negocio
 
                 return (List<CarritoItem>)HttpContext.Current.Session[KEY];
             }
+            set
+            {
+                HttpContext.Current.Session[KEY] = value;
+            }
         }
 
-        /* Agrega un producto (o incrementa la cantidad) */
         public void Agregar(Producto producto, int cantidad = 1)
         {
-            var item = Lista.FirstOrDefault(i => i.Producto.Id == producto.Id);
+            var lista = Lista;
+            var item = lista.FirstOrDefault(i => i.Producto.Id == producto.Id);
+
             if (item == null)
-                Lista.Add(new CarritoItem { Producto = producto, Cantidad = cantidad });
+                lista.Add(new CarritoItem { Producto = producto, Cantidad = cantidad });
             else
                 item.Cantidad += cantidad;
+
+            Lista = lista; // ahora esto está bien
+        }
+
+        public void Eliminar(int productoId)
+        {
+            var lista = Lista;
+            var item = lista.FirstOrDefault(i => i.Producto.Id == productoId);
+            if (item != null)
+            {
+                lista.Remove(item);
+                Lista = lista;
+            }
         }
 
         public List<CarritoItem> ObtenerTodo() => Lista;
