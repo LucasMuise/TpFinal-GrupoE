@@ -59,11 +59,29 @@ namespace CommerzaWeb.Negocio
                 datos.cerrarConexion();
             }
 
+        }
+        public void elminarMarca(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsuta("Delete from Marcas where id = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
 
+            }
+            catch (Exception ex)
+            {
 
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+
+            }
 
         }
-
 
     }
 }

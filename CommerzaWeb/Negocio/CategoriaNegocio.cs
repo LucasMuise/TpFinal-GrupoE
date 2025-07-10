@@ -58,11 +58,28 @@ namespace CommerzaWeb.Negocio
             {
                 datos.cerrarConexion();
             }
+        }
+        public void elminarCat(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsuta("Delete from Categorias where id = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
 
+            }
+            catch (Exception ex)
+            {
 
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
 
+            }
 
         }
-      
     }
 }

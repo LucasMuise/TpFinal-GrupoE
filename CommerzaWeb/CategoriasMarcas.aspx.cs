@@ -15,26 +15,36 @@ namespace CommerzaWeb
         {
             if (!IsPostBack)
             {
-                CategoriaNegocio negocio = new CategoriaNegocio();
-                List<Categoria> lista = negocio.listar();
-                ddlCat.DataSource = lista;
-                ddlCat.DataValueField = "Id";
-                ddlCat.DataTextField = "Desc";
-                ddlCat.DataBind();
 
+                cargarCategorias();
 
-                MarcaNegocio negocioM = new MarcaNegocio();
-                List<Marca> listaM = negocioM.listar();
-
-                ddlMarca.DataSource = listaM;
-                ddlMarca.DataValueField = "Id";
-                ddlMarca.DataTextField = "Desc";
-                ddlMarca.DataBind();
-
+                cargarMarcas();
             }
 
         }
+        private void cargarCategorias()
+        {
+            CategoriaNegocio negocio = new CategoriaNegocio();
+            List<Categoria> lista = negocio.listar();
+            ddlCat.DataSource = lista;
+            ddlCat.DataValueField = "Id";
+            ddlCat.DataTextField = "Desc";
+            ddlCat.DataBind();
 
+        }
+
+        private void cargarMarcas()
+        {
+            MarcaNegocio negocioM = new MarcaNegocio();
+            List<Marca> listaM = negocioM.listar();
+
+            ddlMarca.DataSource = listaM;
+            ddlMarca.DataValueField = "Id";
+            ddlMarca.DataTextField = "Desc";
+            ddlMarca.DataBind();
+
+
+        }
         protected void btnCat_Click(object sender, EventArgs e)
         {
             try
@@ -46,7 +56,8 @@ namespace CommerzaWeb
                 nuevo.Desc = txtCategoria.Text;
                 negocio.agregarCat(nuevo);
 
-                Response.Redirect("CategoriasMarcas.aspx");
+                cargarCategorias();
+                txtCategoria.Text = string.Empty;
             }
             catch (Exception ex)
             {
@@ -63,7 +74,8 @@ namespace CommerzaWeb
                 MarcaNegocio negocio = new MarcaNegocio();
                 nuevo.Desc = txtMarca.Text;
                 negocio.agregarMarca(nuevo);
-                Response.Redirect("CategoriasMarcas.aspx");
+                cargarMarcas();
+                txtMarca.Text = string.Empty;
             }
             catch (Exception ex)
             {
@@ -75,6 +87,19 @@ namespace CommerzaWeb
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                CategoriaNegocio negocio = new CategoriaNegocio();
+                int id = int.Parse(ddlCat.SelectedValue);
+                negocio.elminarCat(id);
+                cargarCategorias();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
 
 
 
@@ -82,6 +107,18 @@ namespace CommerzaWeb
 
         protected void eliminarMarca_Click(object sender, EventArgs e)
         {
+            try
+            {
+                MarcaNegocio negocio = new MarcaNegocio();
+                int id = int.Parse(ddlMarca.SelectedValue);
+                negocio.elminarMarca(id);
+                cargarMarcas();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
 
         }
     }
