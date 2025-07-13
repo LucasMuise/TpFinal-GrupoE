@@ -15,15 +15,6 @@ namespace CommerzaWeb
     {
 
         /// <summary>
-        /// lblCategorias control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCategorias;
-
-        /// <summary>
         /// ddlCat control.
         /// </summary>
         /// <remarks>
@@ -40,6 +31,15 @@ namespace CommerzaWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCategoria;
+
+        /// <summary>
+        /// rfvCat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCat;
 
         /// <summary>
         /// btnCat control.
@@ -60,15 +60,6 @@ namespace CommerzaWeb
         protected global::System.Web.UI.WebControls.Button btnEliminar;
 
         /// <summary>
-        /// lblMarcas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMarcas;
-
-        /// <summary>
         /// ddlMarca control.
         /// </summary>
         /// <remarks>
@@ -87,6 +78,15 @@ namespace CommerzaWeb
         protected global::System.Web.UI.WebControls.TextBox txtMarca;
 
         /// <summary>
+        /// rfvMarca control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMarca;
+
+        /// <summary>
         /// btnMarca control.
         /// </summary>
         /// <remarks>
@@ -103,5 +103,14 @@ namespace CommerzaWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button eliminarMarca;
+
+        /// <summary>
+        /// lblMensaje control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
     }
 }

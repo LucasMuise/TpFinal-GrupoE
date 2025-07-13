@@ -57,7 +57,7 @@
             DataKeyNames="Id"
             OnSelectedIndexChanged="gvProductos_SelectedIndexChanged"
             OnRowCommand="gvProductos_RowCommand">
-    
+
             <Columns>
                 <asp:BoundField HeaderText="Id" DataField="Id" />
                 <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
@@ -67,7 +67,7 @@
                 <asp:BoundField HeaderText="Categoría" DataField="Categoria" />
                 <asp:BoundField HeaderText="Marca" DataField="Marca" />
 
-       
+
                 <asp:TemplateField HeaderText="Carrito">
                     <ItemTemplate>
                         <asp:LinkButton ID="lnkAdd" runat="server"
@@ -77,7 +77,7 @@
                     </ItemTemplate>
                 </asp:TemplateField>
 
-            
+
                 <asp:TemplateField HeaderText="Acción">
                     <ItemTemplate>
                         <asp:LinkButton ID="lnkEdit" runat="server"
@@ -88,7 +88,12 @@
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
-        <a href="About.aspx" class="btn btn-primary">Agregar</a>
+
+        <a id="btnAgregar"
+            runat="server" 
+            href="About.aspx"
+            class="btn btn-primary">Agregar
+        </a>
     </main>
 
 </asp:Content>

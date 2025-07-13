@@ -21,6 +21,7 @@ namespace CommerzaWeb
             {
                 cargarProductos();
             }
+            btnAgregar.Visible = IsAdmin;
         }
 
         private void cargarProductos()
