@@ -51,17 +51,17 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Carrito.aspx">Carrito</a></li>
 
-                        <!-- Link Administración: solo para el admin -->
+                        <!-- Link Administración: era solo para el admin pero vamos a cambiarlo -->
                         <li class="nav-item" runat="server" id="liAdmin" visible="false">
                             <a class="nav-link" runat="server" href="~/Admin/Productos.aspx">Administrar</a>
                         </li>
 
-                        <!-- Ingresar (anónimos) -->
+                        <!-- Ingresar  -->
                         <li class="nav-item" runat="server" id="liLogin">
                             <a class="nav-link" runat="server" href="~/Login.aspx">Ingresar</a>
                         </li>
 
-                        <!-- Salir (logeados) -->
+                        <!-- Salir  -->
                         <li class="nav-item" runat="server" id="liLogout" visible="false">
                             <asp:LinkButton ID="btnLogout" CssClass="nav-link" runat="server"
                                 OnClick="btnLogout_Click">Salir</asp:LinkButton>

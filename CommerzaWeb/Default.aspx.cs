@@ -31,7 +31,7 @@ namespace CommerzaWeb
             gvProductos.DataBind();
         }
 
-        //evento del boton accion 
+        
         protected void gvProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
             string id = gvProductos.SelectedDataKey.Value.ToString();

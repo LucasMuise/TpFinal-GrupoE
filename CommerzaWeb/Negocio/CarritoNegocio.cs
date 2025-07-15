@@ -11,7 +11,7 @@ namespace CommerzaWeb.Negocio
     {
         private const string KEY = "Carrito";
 
-        /* Accede a la lista almacenada en sesión */
+        
         private List<CarritoItem> Lista
         {
             get
