@@ -54,15 +54,17 @@ namespace CommerzaWeb.Datos
         {
             try
             {
+                comando.Connection = conexion;   
                 conexion.Open();
                 comando.ExecuteNonQuery();
+                comando.Parameters.Clear();      
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
+
 
         public void cerrarConexion()
         {
