@@ -70,7 +70,7 @@
         <!--  FEEDBACK + VOLVER  -->
         <div class="col-12 mt-3">
             <asp:Label ID="lblMensaje" runat="server" />
-            <a href="About.aspx" class="btn btn-primary ms-2">Volver</a>
+            <a href="Administrar.aspx" class="btn btn-primary ms-2">Volver</a>
         </div>
 
     </div>

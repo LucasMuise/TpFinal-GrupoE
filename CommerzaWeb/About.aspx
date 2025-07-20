@@ -55,11 +55,7 @@
                     <asp:TextBox ID="txtStock" TextMode="Number" PlaceHolder="Ingrese un número entero válido" CssClass="form-control" runat="server"></asp:TextBox>
                       <asp:Label ID="lblErrorStock" runat="server" ForeColor="Red" />
                 </div>
-                <div class="mb-3">
-                    <asp:Label ID="lblAdmin" CssClass="form-label" runat="server" Text="Categorias y Marcas"></asp:Label>
-
-                    <a href="CategoriasMarcas.aspx" class="btn btn-primary">Administrar</a>
-                </div>
+               
 
 
             </div>

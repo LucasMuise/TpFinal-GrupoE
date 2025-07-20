@@ -53,7 +53,7 @@
 
                         <!-- Link Administración: era solo para el admin pero vamos a cambiarlo -->
                         <li class="nav-item" runat="server" id="liAdmin" visible="false">
-                            <a class="nav-link" runat="server" href="~/Admin/Productos.aspx">Administrar</a>
+                            <a class="nav-link" runat="server" href="~/Administrar.aspx">Administrar</a>
                         </li>
 
                         <!-- Ingresar  -->

@@ -114,7 +114,7 @@ namespace CommerzaWeb
                     negocio.agregarConSp(nuevo);
                    
                 }
-                Response.Redirect("Default.aspx", false);
+                Response.Redirect("Administrar.aspx", false);
             }
             catch (Exception)
             {
@@ -129,7 +129,7 @@ namespace CommerzaWeb
             {
                 ProductoNegocio negocio = new ProductoNegocio();
                 negocio.eliminar(int.Parse(txtId.Text));
-                Response.Redirect("Default.aspx");
+                Response.Redirect("Administrar.aspx");
             }
             catch (Exception)
             {
