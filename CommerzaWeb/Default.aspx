@@ -52,16 +52,19 @@
 
         <hr />
 
-        <asp:GridView ID="gvProductos" runat="server" CssClass="table"
+        <asp:GridView ID="gvProductos" runat="server" OnPageIndexChanging="gvProductos_PageIndexChanging" CssClass="table"
             AutoGenerateColumns="False"
             DataKeyNames="Id"
             OnSelectedIndexChanged="gvProductos_SelectedIndexChanged"
-            OnRowCommand="gvProductos_RowCommand">
+            OnRowCommand="gvProductos_RowCommand"
+            
+            AllowPaging="true"
+            PageSize="2">
 
             <Columns>
-                <asp:BoundField HeaderText="Id" DataField="Id" />
+                <%-- <asp:BoundField HeaderText="Id" DataField="Id" />--%>
                 <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                <asp:BoundField HeaderText="Descripción" DataField="Descripcion" />
+                <%--    <asp:BoundField HeaderText="Descripción" DataField="Descripcion" />--%>
                 <asp:BoundField HeaderText="Precio" DataField="Precio" DataFormatString="{0:C}" />
                 <asp:BoundField HeaderText="Stock" DataField="Stock" />
                 <asp:BoundField HeaderText="Categoría" DataField="Categoria" />
@@ -90,7 +93,7 @@
         </asp:GridView>
 
         <a id="btnAgregar"
-            runat="server" 
+            runat="server"
             href="About.aspx"
             class="btn btn-primary">Agregar
         </a>

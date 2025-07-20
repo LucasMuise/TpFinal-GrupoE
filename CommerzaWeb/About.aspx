@@ -13,7 +13,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="txtNombre" class="form-label">Nombre: </label>
-                    <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" />
+                    <asp:TextBox runat="server" placeholder="Nombre.." ID="txtNombre" CssClass="form-control" />
+                    <asp:Label ID="lblErrorNombre" runat="server" ForeColor="Red" />
                 </div>
                 <div class="mb-3">
                     <label for="txtDesc" class="form-label">Descripcion: </label>
@@ -27,7 +28,8 @@
 
                 <div class="mb-3">
                     <asp:Label ID="lblPrecio" runat="server" Text="Precio:"></asp:Label>
-                    <asp:TextBox ID="txtPrecio" CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtPrecio"  placeholder="ejemplo:1500" CssClass="form-control" runat="server"></asp:TextBox>
+                     <asp:Label ID="lblErrorPrecio" runat="server" ForeColor="Red" />
                 </div>
 
                 <div class="mb-3">
@@ -50,7 +52,8 @@
 
                 <div class="mb-3">
                     <asp:Label ID="lblStock" runat="server" Text="Stock:"></asp:Label>
-                    <asp:TextBox ID="txtStock" CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtStock" TextMode="Number" PlaceHolder="Ingrese un número entero válido" CssClass="form-control" runat="server"></asp:TextBox>
+                      <asp:Label ID="lblErrorStock" runat="server" ForeColor="Red" />
                 </div>
                 <div class="mb-3">
                     <asp:Label ID="lblAdmin" CssClass="form-label" runat="server" Text="Categorias y Marcas"></asp:Label>

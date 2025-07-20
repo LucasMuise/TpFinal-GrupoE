@@ -75,6 +75,24 @@ namespace CommerzaWeb
                 Producto nuevo = new Producto();
                 ProductoNegocio negocio = new ProductoNegocio();
 
+                // Validar nombre
+                if (string.IsNullOrWhiteSpace(txtNombre.Text))
+                {
+                    lblErrorNombre.Text = "El nombre del producto es obligatorio.";
+                    return;
+                }
+                //validar precio
+                if (!decimal.TryParse(txtPrecio.Text, out decimal precio) || precio <= 0)
+                {
+                    lblErrorPrecio.Text = "Ingrese un precio válido.";
+                    return;
+                }
+                ///validar stock
+                if (!int.TryParse(txtStock.Text, out int stock) || stock < 0)
+                {
+                    lblErrorStock.Text = "Campo obligatorio, ingrese valor válido";
+                    return;
+                }
                 nuevo.Nombre = txtNombre.Text;
                 nuevo.Descripcion = txtDesc.Text;
                 nuevo.Categoria = new Categoria();

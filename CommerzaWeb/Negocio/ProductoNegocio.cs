@@ -54,13 +54,14 @@ namespace CommerzaWeb.Negocio
 
             try
             {
-                datos.setearConsuta(
-                    "SELECT P.Id, P.Nombre, P.Descripcion, P.Precio, P.Stock, " +
-                    "C.Nombre AS Categoria, M.Nombre AS Marca " +
-                    "FROM Productos P " +
-                    "JOIN Categorias C ON P.CategoriaId = C.Id " +
-                    "JOIN Marcas M    ON P.MarcaId     = M.Id " +
-                    "WHERE P.Id = @Id");
+                datos.setearConsuta("SELECT " +
+            "P.Id, P.Nombre, P.Descripcion, P.Precio, P.Stock, " +
+            "C.Id AS CategoriaId, C.Nombre AS Categoria, " +
+            "M.Id AS MarcaId, M.Nombre AS Marca " +
+            "FROM Productos AS P " +
+            "INNER JOIN Categorias AS C ON P.CategoriaId = C.Id " +
+            "INNER JOIN Marcas AS M ON P.MarcaId = M.Id " +
+            "WHERE P.Id = @Id");
                 datos.setearParametro("@Id", id);
                 datos.ejecutarLectura();
 
@@ -75,10 +76,12 @@ namespace CommerzaWeb.Negocio
                         Stock = (int)datos.Lector["Stock"],
                         Categoria = new Categoria
                         {
+                            Id = (int)datos.Lector["CategoriaId"],
                             Desc = datos.Lector["Categoria"].ToString()
                         },
                         Marca = new Marca
                         {
+                            Id = (int)datos.Lector["MarcaId"],
                             Desc = datos.Lector["Marca"].ToString()
                         }
                     };
@@ -101,14 +104,14 @@ namespace CommerzaWeb.Negocio
 
                 datos.setearProcedimiento("storedAltaProducto");
 
-             
+
                 datos.setearParametro("@Nombre", nuevo.Nombre);
                 datos.setearParametro("@Descripcion", nuevo.Descripcion);
                 datos.setearParametro("@Precio", nuevo.Precio);
                 datos.setearParametro("@Stock", nuevo.Stock);
                 datos.setearParametro("@CategoriaId", nuevo.Categoria.Id);
                 datos.setearParametro("@MarcaId", nuevo.Marca.Id);
-                
+
 
                 datos.ejecutarLectura();
             }
@@ -128,7 +131,7 @@ namespace CommerzaWeb.Negocio
         {
             AccesoDatos datos = new AccesoDatos();
             try
-            { 
+            {
                 datos.setearProcedimiento("storedModificar");
                 datos.setearParametro("@Id", produc.Id);
                 datos.setearParametro("@Nombre", produc.Nombre);
@@ -175,7 +178,7 @@ namespace CommerzaWeb.Negocio
                     producto.Categoria.Desc = (string)datos.Lector["Categoria"];
                     producto.Marca = new Marca();
                     producto.Marca.Desc = (string)datos.Lector["Marca"];
-                  
+
                     lista.Add(producto);
                 }
 
@@ -194,7 +197,7 @@ namespace CommerzaWeb.Negocio
         }
         public void eliminar(int id)
         {
-                AccesoDatos datos = new AccesoDatos();
+            AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearConsuta("delete from Productos where id = @id");
