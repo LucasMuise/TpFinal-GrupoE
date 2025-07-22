@@ -7,16 +7,16 @@ using System.Web;
 
 namespace CommerzaWeb.Negocio
 {
-    public class ImagenNegocio
+    public static class ImagenNegocio
     {
-        public List<Imagen> ListarImagenesDeProducto(int idProducto)
+        public static List<Imagen> ListarImagenesDeProducto(int idProducto)
         {
             List<Imagen> imagenesDeProducto = new List<Imagen>();
             AccesoDatos db = new AccesoDatos();
 
             try
             {
-                db.setearConsuta("SELECT Id, ProductoId, Url FROM Imagenes WHERE ProductoId = @idProducto");
+                db.setearConsulta("SELECT Id, ProductoId, Url FROM Imagenes WHERE ProductoId = @idProducto");
                 db.setearParametro("@idProducto", idProducto);
                 db.ejecutarLectura();
 
@@ -41,14 +41,14 @@ namespace CommerzaWeb.Negocio
             return imagenesDeProducto;
         }
 
-        public string TraerImagenPrincipalDeProducto(int idProducto)
+        public static string TraerImagenPrincipalDeProducto(int idProducto)
         {
             string urlImagenPrincipal = null;
             AccesoDatos db = new AccesoDatos();
 
             try
             {
-                db.setearConsuta("SELECT TOP 1 Id, ProductoId, Url FROM Imagenes WHERE ProductoId = @idProducto");
+                db.setearConsulta("SELECT TOP 1 Id, ProductoId, Url FROM Imagenes WHERE ProductoId = @idProducto");
                 db.setearParametro("@idProducto", idProducto);
                 db.ejecutarLectura();
 

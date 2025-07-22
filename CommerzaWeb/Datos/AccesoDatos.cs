@@ -29,7 +29,7 @@ namespace CommerzaWeb.Datos
         {
             comando.Parameters.AddWithValue(nombre, valor);
         }
-        public void setearConsuta(String consulta)
+        public void setearConsulta(String consulta)
         {
             comando.CommandType = System.Data.CommandType.Text;
             comando.CommandText = consulta;

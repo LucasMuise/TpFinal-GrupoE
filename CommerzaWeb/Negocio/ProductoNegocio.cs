@@ -12,6 +12,7 @@ namespace CommerzaWeb.Negocio
 {
     public class ProductoNegocio
     {
+        /*
         public List<Producto> listarProducto()
         {
             List<Producto> lista = new List<Producto>();
@@ -47,6 +48,7 @@ namespace CommerzaWeb.Negocio
                 datos.cerrarConexion();
             }
         }
+        */
         public Producto traerPorId(int id)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -54,7 +56,7 @@ namespace CommerzaWeb.Negocio
 
             try
             {
-                datos.setearConsuta("SELECT " +
+                datos.setearConsulta("SELECT " +
             "P.Id, P.Nombre, P.Descripcion, P.Precio, P.Stock, " +
             "C.Id AS CategoriaId, C.Nombre AS Categoria, " +
             "M.Id AS MarcaId, M.Nombre AS Marca " +
@@ -200,7 +202,7 @@ namespace CommerzaWeb.Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsuta("delete from Productos where id = @id");
+                datos.setearConsulta("delete from Productos where id = @id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarLectura();
 

@@ -16,7 +16,7 @@ namespace CommerzaWeb.Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsuta("Select Id, Nombre From Marcas");
+                datos.setearConsulta("Select Id, Nombre From Marcas");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -65,7 +65,7 @@ namespace CommerzaWeb.Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsuta("Delete from Marcas where id = @id");
+                datos.setearConsulta("Delete from Marcas where id = @id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarLectura();
 

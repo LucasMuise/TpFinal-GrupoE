@@ -20,7 +20,7 @@ namespace CommerzaWeb
             if (!Page.IsValid) return;   
 
             var d = new AccesoDatos();
-            d.setearConsuta("SELECT COUNT(*) FROM Usuarios WHERE Email = @mail");
+            d.setearConsulta("SELECT COUNT(*) FROM Usuarios WHERE Email = @mail");
             d.setearParametro("@mail", txtEmail.Text);
 
             try
