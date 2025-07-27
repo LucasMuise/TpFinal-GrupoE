@@ -15,7 +15,7 @@ namespace CommerzaWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // tiene que estar logeado el usuario para ver el carrito
+            // tiene que estar logeado el usuario para ver el carro
             if (!User.Identity.IsAuthenticated)
             {
                 Response.Redirect("~/Login.aspx?ReturnUrl=Carrito.aspx");
@@ -35,7 +35,7 @@ namespace CommerzaWeb
 
             lblTotal.Text = carritoNeg.Total().ToString("C");
 
-            // Habilita el botón solo si hay algo en la lista 
+            // Habilito el boton solo si hay algo en la lista
             btnComprar.Enabled = lista.Count > 0;
         }
 
@@ -52,10 +52,16 @@ namespace CommerzaWeb
 
         protected void btnComprar_Click(object sender, EventArgs e)
         {
-            // guardo la venta
-            carritoNeg.Vaciar();
-            CargarCarrito();
-            lblMensaje.Text = "¡Gracias por tu compra (simulada)!";
+          
+            if (carritoNeg.ObtenerTodo().Count == 0)
+            {
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Text = "Tu carrito está vacío.";
+                return;
+            }
+
+            Response.Redirect("~/ResumenCompra.aspx");
         }
+
     }
 }
