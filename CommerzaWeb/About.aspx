@@ -21,15 +21,12 @@
                     <asp:TextBox runat="server" ID="txtDesc" CssClass="form-control" />
                 </div>
 
-             <%--   <div class="mb-3">
-                    <label for="txtImagen" class="form-label">ImagenUrl: </label>
-                    <asp:TextBox runat="server" ID="TxtImage" CssClass="form-control" />
-                </div>--%>
+
 
                 <div class="mb-3">
                     <asp:Label ID="lblPrecio" runat="server" Text="Precio:"></asp:Label>
-                    <asp:TextBox ID="txtPrecio"  placeholder="ejemplo:1500" CssClass="form-control" runat="server"></asp:TextBox>
-                     <asp:Label ID="lblErrorPrecio" runat="server" ForeColor="Red" />
+                    <asp:TextBox ID="txtPrecio" placeholder="ejemplo:1500" CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:Label ID="lblErrorPrecio" runat="server" ForeColor="Red" />
                 </div>
 
                 <div class="mb-3">
@@ -53,9 +50,15 @@
                 <div class="mb-3">
                     <asp:Label ID="lblStock" runat="server" Text="Stock:"></asp:Label>
                     <asp:TextBox ID="txtStock" TextMode="Number" PlaceHolder="Ingrese un número entero válido" CssClass="form-control" runat="server"></asp:TextBox>
-                      <asp:Label ID="lblErrorStock" runat="server" ForeColor="Red" />
+                    <asp:Label ID="lblErrorStock" runat="server" ForeColor="Red" />
                 </div>
-               
+
+                <div class="mb-3">
+                    <label for="txtImagen" class="form-label">ImagenUrl: </label>
+                    <asp:TextBox runat="server" Placeholder="agregar Url..." AutoPostBack="true" OnTextChanged="TxtImagen_TextChanged" ID="TxtImagen" CssClass="form-control" />
+                    <asp:Image ImageUrl="https://grupoact.com.ar/wp-content/uploads/2020/04/placeholder.png" 
+                        runat="server" ID="imgArticulo" Width="60%" />
+                </div>
 
 
             </div>

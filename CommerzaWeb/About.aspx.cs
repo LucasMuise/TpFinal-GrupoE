@@ -12,8 +12,18 @@ namespace CommerzaWeb
 {
     public partial class About : Page
     {
+        protected bool IsAdmin
+        {
+            get { return (int?)Session["RolId"] == 1; }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (!IsAdmin)
+            {
+
+                Response.Redirect("Default.aspx");
+            }
             txtId.Enabled = false;
             try
 
@@ -35,13 +45,15 @@ namespace CommerzaWeb
                     ddlMarca.DataBind();
                     if (Request.QueryString["Id"] != null)
                     {
-                        btnEliminar.Enabled = true; 
+                        btnEliminar.Enabled = true;
+                        TxtImagen.Enabled = true;
                     }
                     else
                     {
-                        btnEliminar.Enabled = false; 
+                        btnEliminar.Enabled = false;
+                        TxtImagen.Enabled = false;
                     }
-                
+
                 }
                 string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
                 if (id != "" && !IsPostBack)
@@ -93,26 +105,35 @@ namespace CommerzaWeb
                     lblErrorStock.Text = "Campo obligatorio, ingrese valor válido";
                     return;
                 }
+
+
                 nuevo.Nombre = txtNombre.Text;
                 nuevo.Descripcion = txtDesc.Text;
                 nuevo.Categoria = new Categoria();
                 nuevo.Categoria.Id = int.Parse(ddlCat.SelectedValue);
                 nuevo.Marca = new Marca();
                 nuevo.Marca.Id = int.Parse(ddlMarca.SelectedValue);
-               
+
                 nuevo.Precio = decimal.Parse(txtPrecio.Text);
                 nuevo.Stock = int.Parse(txtStock.Text);
+                ImagenNegocio neg = new ImagenNegocio();
+                Imagen img = new Imagen();
                 if (Request.QueryString["Id"] != null)
                 {
                     nuevo.Id = int.Parse(txtId.Text);
                     negocio.modificarConSp(nuevo);
-                   
+                    if (!string.IsNullOrWhiteSpace(TxtImagen.Text))
+                    {
+                        img.IdProducto = nuevo.Id;
+                        img.Url = TxtImagen.Text.Trim();
+                        neg.agregarImagen(img);
+                    }
                 }
                 else
-                {   
-                   
+                {
+
                     negocio.agregarConSp(nuevo);
-                   
+
                 }
                 Response.Redirect("Administrar.aspx", false);
             }
@@ -137,6 +158,11 @@ namespace CommerzaWeb
                 throw;
             }
 
+        }
+
+        protected void TxtImagen_TextChanged(object sender, EventArgs e)
+        {
+            imgArticulo.ImageUrl = TxtImagen.Text;
         }
     }
 }

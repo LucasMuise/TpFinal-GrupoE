@@ -7,7 +7,7 @@ using System.Web;
 
 namespace CommerzaWeb.Negocio
 {
-    public static class ImagenNegocio
+    public  class ImagenNegocio
     {
         public static List<Imagen> ListarImagenesDeProducto(int idProducto)
         {
@@ -67,6 +67,28 @@ namespace CommerzaWeb.Negocio
             }
 
             return urlImagenPrincipal;
+        }
+
+        public  void agregarImagen(Imagen imagen)
+        {
+
+           AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("INSERT INTO Imagenes (ProductoId, Url) VALUES (@IdProducto, @Url)");
+                datos.setearParametro("@IdProducto", imagen.IdProducto);
+                datos.setearParametro("@Url", imagen.Url);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex; 
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
         }
     }
 }

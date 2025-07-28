@@ -20,8 +20,9 @@ namespace CommerzaWeb
         private void cargarProductos()
         {
             var negocio = new ProductoNegocio();
-            var lista = negocio.listarConSp();
-            repProductos.DataSource = lista;
+          
+            Session.Add("listaProductos", negocio.listarConSp());
+            repProductos.DataSource = Session["listaProductos"]; 
             repProductos.DataBind();
         }
 
@@ -92,5 +93,12 @@ namespace CommerzaWeb
             }
         }
 
+        protected void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            List<Producto> lista = (List<Producto>)Session["listaProductos"];
+            List<Producto> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            repProductos.DataSource = listaFiltrada;
+            repProductos.DataBind();
+        }
     }
 }

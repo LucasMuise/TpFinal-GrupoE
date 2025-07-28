@@ -1,8 +1,15 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="CommerzaWeb._Default" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <main>
+
+        <div class="container-fluid">
+
+            <asp:TextBox ID="txtFiltro" Placeholder="Buscar por nombre..." CssClass="form-control"
+                AutoPostBack="true" OnTextChanged="txtFiltro_TextChanged" runat="server"></asp:TextBox>
+        </div>
+
 
         <asp:UpdatePanel ID="UpdatePanelProductos" runat="server" ChildrenAsTriggers="true" UpdateMode="Conditional">
             <ContentTemplate>

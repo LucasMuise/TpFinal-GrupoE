@@ -15,8 +15,13 @@ namespace CommerzaWeb
         {
             get { return (int?)Session["RolId"] == 1; }
         }
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsAdmin)
+            {
+                Response.Redirect("Default.aspx");
+            }
             if (!IsPostBack)
             {
                 cargarProductos();
@@ -26,7 +31,8 @@ namespace CommerzaWeb
         private void cargarProductos()
         {
             ProductoNegocio negocio = new ProductoNegocio();
-            gvProductos.DataSource = negocio.listarConSp();
+            Session.Add("listaProductos", negocio.listarConSp());
+            gvProductos.DataSource = Session["listaProductos"];
             gvProductos.DataBind();
         }
         protected void gvProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -59,5 +65,12 @@ namespace CommerzaWeb
             }
         }
 
+        protected void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            List<Producto> lista = (List<Producto>)Session["listaProductos"];
+            List<Producto> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            gvProductos.DataSource = listaFiltrada;
+            gvProductos.DataBind();
+        }
     }
 }
